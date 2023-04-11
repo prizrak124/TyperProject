@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Typer.Controls.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Typer.Controls"
+             xmlns:root="clr-namespace:Typer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" FontSize="28">
+    <UserControl.Resources>
+        <root:FileNameConverter x:Key="NameConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.6"/>
+        </Grid.Background>
+        <StackPanel Margin="0,40,0,0" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Resources/logo.png" Width="140"/>
+            <Label VerticalAlignment="Center" Content="PRIZRAK124"/>
+        </StackPanel>
+
+        <StackPanel Margin="100,20"  Grid.Row="1">
+            
+            <Label x:Name="LabelVolume" Content="Громкость"/>
+            <Slider x:Name="SliderVolume" 
+                    Minimum="0" Maximum="1" SmallChange="0.1" LargeChange="0.1"  
+                    
+                    ValueChanged="SliderVolume_ValueChanged">
+                
+            </Slider>
+            
+            <Button 
+                    Margin="0,50,0,0"
+                    HorizontalAlignment="Center"
+                    Content="Выключить музыку" 
+                    Click="ButtonAudioDisable_Click"/>
+        </StackPanel>
+        
+        <ListView Grid.Row="2"  
+                  BorderThickness="0"
+                  VirtualizingPanel.IsVirtualizing="False"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" x:Name="ListViewAudios" VirtualizingPanel.ScrollUnit="Pixel" Background="Transparent"  >
+
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem" >
+
+                                <Border x:Name="Bg" BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" TargetName="Bg" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" TargetName="Bg" Value="TransParent"/>
+                                    </Trigger>
+
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                </Style>
+            </ListView.ItemContainerStyle>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Button  x:Name="ButtonAudioSelect"  Click="ButtonAudioSelect_Click">
+                        <Button.Content>
+                            <TextBlock HorizontalAlignment="Left" 
+                                       TextAlignment="Center" 
+                                       TextWrapping="Wrap" 
+                                       Text="{Binding Name,Converter={StaticResource NameConverter}}" />
+                        </Button.Content>
+                    </Button>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+           
+        </ListView>
+        <Button Grid.Row="3"  HorizontalAlignment="Center"  x:Name="ButtonBack" Content="Назад" Click="ButtonBack_Click"/>
+    </Grid>
+</UserControl>

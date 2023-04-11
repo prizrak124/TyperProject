@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Typer.Controls.HelpInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Typer.Controls"
+             xmlns:appl="clr-namespace:Typer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White" FontSize="24">
+    <UserControl.Resources>
+      
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.8"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock  HorizontalAlignment="Center" Text="Помощ" FontWeight="Bold"/>
+        <ScrollViewer Margin="20" Grid.Row="1" VerticalScrollBarVisibility="Visible">
+       
+            
+            
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock>
+                    <Run Text="Цель:" FontWeight="Bold"/>
+                    <Run Text="Ваша цель за максимально короткое времня, ввести предложенный текст."/>
+                </TextBlock>
+                <TextBlock  FontWeight="Bold" Text="Нажатие на кнопку Esc (Escape) ставит игру на паузу"></TextBlock>
+                <TextBlock>
+                    <Run Text="Как играть?" FontWeight="Bold"/>
+                    <LineBreak/>
+                    <Run Text="Чтобы начать играть вам требуется нажать на кнопку: 'играть'"/>
+                    <Run Text="После, у вас откроется окно, выбора сложности игры"/>
+                    <Run Text="После выбра сложности у вас откроется список текстами для набора"/>
+                    <Run Text="После выбора текста, вам достаточно будет начать набирать текст или  нажать на кнопку 'играть'."/>
+                </TextBlock>
+                <TextBlock>
+                    <Run Text="Настройки" FontWeight="Bold"/>
+                    <LineBreak/>
+                    <Run Text="При открытии данного раздела, пользователь может:"/>
+                    <LineBreak/>
+                    <Run Text="*Выключить музыку."/>
+                    <LineBreak/>
+                    <Run Text="*Уменьшить или увеличить громкость музыки, потянув в сторну за книгу."/>
+                     <LineBreak/>
+                    <Run Text="*Переключить музыку, выбрав её из списка."/>
+
+                </TextBlock>
+                <TextBlock>
+                    <Run Text="Как добавить свой текст?" FontWeight="Bold"/>
+                    <LineBreak/>
+                    <Run Text="Чтобы добавить свой текст, вам необходимо вставить требуемый текст в документ формата .txt"/>
+            
+                </TextBlock>
+                <StackPanel  Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="Затем нужно перейти по пути:"/>
+                    <TextBlock x:Name="GameTextPathTb"  TextWrapping="WrapWithOverflow"/>
+                  
+                </StackPanel>
+                <Button  HorizontalAlignment="Left" x:Name="OpenGameTextPath" Content="Открыть папку" Click="OpenGameTextPath_Click"/>
+                <TextBlock>
+                    <Run Text="Перейти в папку с текстами нужной сложности:"/>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run Text="*Легко (Easy)" FontWeight="Heavy"/>
+                    <LineBreak/>
+                    <Run Text="*Нормально (Normal)" FontWeight="Heavy"/>
+                    <LineBreak/>
+                     <Run Text="*Сложно (Hard)" FontWeight="Heavy"/>
+                    <LineBreak/>
+                    <Run Text="Вставить файл с текстом в выбранную папку и повторно открыть меню выбора текста"/>
+                </TextBlock>
+                <TextBlock>
+                    <Run Text="Как добавить свою музыку?" FontWeight="Bold"/>
+                    <LineBreak/>
+                    <Run Text="Чтобы добавить свою музыку, вам необходимо иметь музыку в формате .mp3"/>
+                    
+                </TextBlock>
+                <StackPanel  Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="Затем нужно перейти по пути:"/>
+                    <TextBlock x:Name="GameTextPathTb1"  TextWrapping="WrapWithOverflow"/>
+                    
+                </StackPanel>
+                <Button  HorizontalAlignment="Left"  x:Name="OpenGameTextPath1" Content="Открыть папку" Click="OpenGameTextPath1_Click"/>
+                <TextBlock Text="Вставить файл формата .mp3 в папку и повторно открыть настройки"/>
+            </StackPanel>
+      
+        </ScrollViewer>
+        <Button Grid.Row="2" HorizontalAlignment="Center" x:Name="ExitButton" Click="ExitButton_Click" Content="Выйти"/>
+    </Grid>
+
+
+</UserControl>
